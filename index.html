@@ -168,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/19/2024-09-00-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%20Labs/">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/20/2024-09-20-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%20Lab1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -182,7 +182,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/09/19/2024-09-00-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%20Labs/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2024/09/20/2024-09-20-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%20Lab1/" class="post-title-link" itemprop="url">编译原理 Lab1</a>
         </h2>
 
         <div class="post-meta">
@@ -193,7 +193,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-09-19 19:37:31 / Modified: 19:46:18" itemprop="dateCreated datePublished" datetime="2024-09-19T19:37:31+08:00">2024-09-19</time>
+              <time title="Created: 2024-09-20 00:00:00 / Modified: 02:29:47" itemprop="dateCreated datePublished" datetime="2024-09-20T00:00:00+08:00">2024-09-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lesson/" itemprop="url" rel="index"><span itemprop="name">lesson</span></a>
+                </span>
             </span>
 
           
@@ -207,8 +216,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<hr>
+          <h1 id="编译原理-Lab1"><a href="#编译原理-Lab1" class="headerlink" title="编译原理 Lab1"></a>编译原理 Lab1</h1><p>课程代码也发一下吧；</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>一看测试程序的 python 源码头：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># encoding: utf-8</span></span><br></pre></td></tr></table></figure>
+
+<p>linux 环境，干脆弄个 docker 隔离一下：</p>
+<p><strong>Dockerfile</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.13</span>-rc-bookworm</span><br><span class="line"></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> name=<span class="string">&quot;compilation-principle&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> version=<span class="string">&quot;1.0&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /apps</span></span><br><span class="line"><span class="comment"># to make sure the container never stop itself</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;tail&quot;</span>, <span class="string">&quot;-f&quot;</span>, <span class="string">&quot;/dev/null&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>用 docker 构建环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker build ./ --tag compilation-principal-labs</span><br><span class="line"><span class="comment"># 6ff7ff597e6d6da7e432e0672cb21c2b7e3dcb85d0cd3858e9b5ea39edf2c4b6</span></span><br><span class="line">docker run -d --name cp-labs-env -v C:/Users/Westj/Desktop/semester5/240900CompilingPrincipal/Labs/vol:/apps 6ff</span><br><span class="line"><span class="comment"># d378173aa930f0d1278a67a5e372adebab9d889da3d933bd3801ae753f02dbfb</span></span><br></pre></td></tr></table></figure>
+
+<p>bash 与 docker 交互：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it d37 /bin/bash</span><br><span class="line"><span class="comment"># root@d378173aa930:/apps#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lab1"><a href="#Lab1" class="headerlink" title="Lab1"></a>Lab1</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. You will complete the following functions (declared in header file) in the linked_list.c file!</span></span><br></pre></td></tr></table></figure>
+
+<p>完成链表定义即可；</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><strong>linked_list.h</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="type">int</span> count;</span><br><span class="line">        <span class="type">int</span> value;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; node;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* initialize a linked list, head node is special */</span></span><br><span class="line">node *<span class="title function_">linked_list_init</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* destroy a linked list, free spaces */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_free</span><span class="params">(node *head)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* display elements in the linked list */</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">linked_list_tostring</span><span class="params">(node *head)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* get the length of the linked list */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_size</span><span class="params">(node *head)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* insert val at the last of the linked list */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_append</span><span class="params">(node *head, <span class="type">int</span> val)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * You should implement functions according to the follow function</span></span><br><span class="line"><span class="comment"> * declarations. One thing to note that, the parameter *index*</span></span><br><span class="line"><span class="comment"> * refers to the position of value node, i.e., index 0 corresponds</span></span><br><span class="line"><span class="comment"> * to the next node of the header node.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * In case of out-of-bound index, your code should do nothing in all</span></span><br><span class="line"><span class="comment"> * functions. As for remove, if the value doesn&#x27;t exist, do nothing.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * For get, if index out of bound, return INT_MIN.</span></span><br><span class="line"><span class="comment"> * For search, if value not exists. return -1.</span></span><br><span class="line"><span class="comment"> * For search_all, if value not exists, return empty list.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* insert val at position index */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_insert</span><span class="params">(node *head, <span class="type">int</span> val, <span class="type">int</span> index)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* delete node at position index */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_delete</span><span class="params">(node *head, <span class="type">int</span> index)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* remove the first occurence node of val */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_remove</span><span class="params">(node *head, <span class="type">int</span> val)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* remove all occurences of val */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_remove_all</span><span class="params">(node *head, <span class="type">int</span> val)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* get value at position index */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_get</span><span class="params">(node *head, <span class="type">int</span> index)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* search the first index of val */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_search</span><span class="params">(node *head, <span class="type">int</span> val)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* search all indexes of val */</span></span><br><span class="line">node *<span class="title function_">linked_list_search_all</span><span class="params">(node *head, <span class="type">int</span> val)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>linked_list.c</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;linked_list.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">node *<span class="title function_">linked_list_init</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    node *head = (node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">    head-&gt;count = <span class="number">0</span>;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_free</span><span class="params">(node *head)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    node *last;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        last = cur;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">        <span class="built_in">free</span>(last);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> linked_list_string[<span class="number">0x10000</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> *<span class="title function_">linked_list_tostring</span><span class="params">(node *head)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head-&gt;next;</span><br><span class="line">    <span class="type">char</span> *position;</span><br><span class="line">    <span class="type">int</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        position = linked_list_string + length;</span><br><span class="line">        length += <span class="built_in">sprintf</span>(position, <span class="string">&quot;%d&quot;</span>, cur-&gt;value);</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">        <span class="keyword">if</span> (cur != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            position = linked_list_string + length;</span><br><span class="line">            length += <span class="built_in">sprintf</span>(position, <span class="string">&quot;-&gt;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    position = linked_list_string + length;</span><br><span class="line">    length += <span class="built_in">sprintf</span>(position, <span class="string">&quot;%c&quot;</span>, <span class="string">&#x27;\0&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> linked_list_string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_size</span><span class="params">(node *head)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> head-&gt;count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_append</span><span class="params">(node *head, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    node *new_node;</span><br><span class="line">    <span class="keyword">while</span> (cur-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    new_node = (node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">    new_node-&gt;value = val;</span><br><span class="line">    new_node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    cur-&gt;next = new_node;</span><br><span class="line">    head-&gt;count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* your implementation goes here */</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_insert</span><span class="params">(node *head, <span class="type">int</span> val, <span class="type">int</span> index)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">if</span> (index &gt; head-&gt;count || index &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// do nothing</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        node *new_node = (node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">        new_node-&gt;value = val;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        new_node-&gt;next = cur-&gt;next;</span><br><span class="line">        cur-&gt;next = new_node;</span><br><span class="line">        head-&gt;count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_delete</span><span class="params">(node *head, <span class="type">int</span> index)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= head-&gt;count || index &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// do nothing</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        node *delete_node = cur-&gt;next;</span><br><span class="line">        cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">        <span class="comment">// free delete_node</span></span><br><span class="line">        <span class="built_in">free</span>(delete_node);</span><br><span class="line">        head-&gt;count--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_remove</span><span class="params">(node *head, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">while</span> (cur-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;next-&gt;value == val)</span><br><span class="line">        &#123;</span><br><span class="line">            node *remove_node = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">            <span class="built_in">free</span>(remove_node);</span><br><span class="line">            head-&gt;count--;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">linked_list_remove_all</span><span class="params">(node *head, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">while</span> (cur-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (cur-&gt;next-&gt;value == val)</span><br><span class="line">        &#123;</span><br><span class="line">            node *remove_node = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">            <span class="built_in">free</span>(remove_node);</span><br><span class="line">            head-&gt;count--;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_get</span><span class="params">(node *head, <span class="type">int</span> index)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= head-&gt;count || index &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> INT_MIN;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;next-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">linked_list_search</span><span class="params">(node *head, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; head-&gt;count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;next-&gt;value == val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">node *<span class="title function_">linked_list_search_all</span><span class="params">(node *head, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    node *search_list = linked_list_init();</span><br><span class="line">    node *cur = head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; head-&gt;count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;next-&gt;value == val)</span><br><span class="line">        &#123;</span><br><span class="line">            linked_list_append(search_list, i);</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> search_list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><strong>.&#x2F;vol : &#x2F;apps</strong></p>
+<p><img src="https://i.imgur.com/HYXhbwT.png"></p>
+<h3 id="编译操作"><a href="#编译操作" class="headerlink" title="编译操作"></a>编译操作</h3><p><code>cd lab1</code> 进入映射的 <code>apps/lab1</code> ，<code>make libll</code> 编译 <code>libll.so</code>：</p>
+<p><img src="https://i.imgur.com/Sv2hkZg.png"></p>
+<p>编译成功输出，运行测试程序：</p>
+<p><img src="https://i.imgur.com/Yr2uY7S.png"></p>
+<p>测试通过；</p>
+<h2 id="车子"><a href="#车子" class="headerlink" title="车子"></a>车子</h2><p>红拂夜奔；</p>
+<blockquote>
+<p>他碰上了一件倒霉的事儿，昨天一个不小心，被洛阳留守大尉杨素看上了，要收他做一名东床快婿。这可不是闹着玩儿的。这个东床比太平间还厉害，躺上去就是死人啦！</p>
+</blockquote>
+<p>跨年孤勇者；</p>
+<blockquote>
+<p>你破旧的玩偶 你的 面具 你的自我</p>
+</blockquote>
+<p>华北浪漫革命；</p>
+<blockquote>
+<p>我面无表情 装作很冷静</p>
+<p>去营造那不存在的暖风</p>
+<p>脚下却只能踩着水坑</p>
+</blockquote>
+<p>霍乱时期的毕业；</p>
+<blockquote>
+<p>我为你保留了童贞可不是一场梦</p>
+</blockquote>
+<p>我原以为什么，但什么，什么，什么，反倒显得什么什么了。</p>
 
       
     </div>
@@ -376,7 +432,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-19 06:33:35" itemprop="dateModified" datetime="2024-09-19T06:33:35+08:00">2024-09-19</time>
+                <time title="Modified: 2024-09-19 21:18:13" itemprop="dateModified" datetime="2024-09-19T21:18:13+08:00">2024-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -496,84 +552,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QST137">
-      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QST2's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/" class="post-title-link" itemprop="url">两年上下</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-09-15 00:00:00 / Modified: 04:25:56" itemprop="dateCreated datePublished" datetime="2024-09-15T00:00:00+08:00">2024-09-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/misc/" itemprop="url" rel="index"><span itemprop="name">misc</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="两载上下"><a href="#两载上下" class="headerlink" title="两载上下"></a>两载上下</h1><h2 id="两载上非下"><a href="#两载上非下" class="headerlink" title="两载上非下"></a>两载上非下</h2><p>长城杯前几天刚跟人吵了架，口嗨恶心到人家，我又叛逆症发作，给人家考研哥挤兑退群了；</p>
-<p>我肯定不想的，他很好的一个人，但我也没道理嘴上让步，我确实没错，让步我也不爽了，我压力也大啊！</p>
-<p>我一直不相信”道不同不相为谋“这句话，我认为人生很大程度是因为”道不同相为谋“这种事情的存在变得精彩刺激起来的；</p>
-<p>可是我在接纳别人的时候却又不循循善诱别人接纳自己，这就是我的不对了；</p>
-<h2 id="两载上与下"><a href="#两载上与下" class="headerlink" title="两载上与下"></a>两载上与下</h2><p>啊操，这何尝不是一种摆烂呢，突然想起 22.09 的自己，像一条已经失去了生的希望的死鱼，讨厌的人在抢救我，回去问问它，能不能拔掉我的氧气管呢；</p>
-<p>事实上是我进化成新的生命了，似乎是很恶心的生命，但我身上像卸下了几万斤的担子，想必外表看起来很丑陋，因为试图抢救我把我变回活鱼的它瞠目结舌；</p>
-<p>两栖动物在鱼眼里想必是丑陋，手脚好怪，鱼为什么不能永远圆圆的呢，长出手脚有什么用呢？掰到了怎么办呢？掰疼了怎么办呢？掰断了怎么办呢？没有手脚，还会游泳吗？</p>
-<h2 id="两载上或下"><a href="#两载上或下" class="headerlink" title="两载上或下"></a>两载上或下</h2><p>挨骂具体日期不记得了，大概是最近，懒得重新去翻，不能反反复复捡骂；</p>
-<p>青春留给我的两项作品赛，目前已经完成的很好，可能也有了点挑衅的资本；</p>
-<p>时至今日，再去骂我的老朋友们应该也不再是因为心虚了，却再没了半分雅致，这是非常反常的一件事；</p>
-<p>也不知在这漫漫短夜的一个角落，是否还有一个悲喜都像是带着哭腔的声音，仍孜孜不倦地暗咒着我的龌龊与冰冷。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/15/2024-09-15-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -605,7 +583,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-19 20:23:10" itemprop="dateModified" datetime="2024-09-19T20:23:10+08:00">2024-09-19</time>
+                <time title="Modified: 2024-09-19 21:18:03" itemprop="dateModified" datetime="2024-09-19T21:18:03+08:00">2024-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -688,6 +666,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/" class="post-title-link" itemprop="url">两年上下</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-09-15 00:00:00 / Modified: 04:25:56" itemprop="dateCreated datePublished" datetime="2024-09-15T00:00:00+08:00">2024-09-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/misc/" itemprop="url" rel="index"><span itemprop="name">misc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="两载上下"><a href="#两载上下" class="headerlink" title="两载上下"></a>两载上下</h1><h2 id="两载上非下"><a href="#两载上非下" class="headerlink" title="两载上非下"></a>两载上非下</h2><p>长城杯前几天刚跟人吵了架，口嗨恶心到人家，我又叛逆症发作，给人家考研哥挤兑退群了；</p>
+<p>我肯定不想的，他很好的一个人，但我也没道理嘴上让步，我确实没错，让步我也不爽了，我压力也大啊！</p>
+<p>我一直不相信”道不同不相为谋“这句话，我认为人生很大程度是因为”道不同相为谋“这种事情的存在变得精彩刺激起来的；</p>
+<p>可是我在接纳别人的时候却又不循循善诱别人接纳自己，这就是我的不对了；</p>
+<h2 id="两载上与下"><a href="#两载上与下" class="headerlink" title="两载上与下"></a>两载上与下</h2><p>啊操，这何尝不是一种摆烂呢，突然想起 22.09 的自己，像一条已经失去了生的希望的死鱼，讨厌的人在抢救我，回去问问它，能不能拔掉我的氧气管呢；</p>
+<p>事实上是我进化成新的生命了，似乎是很恶心的生命，但我身上像卸下了几万斤的担子，想必外表看起来很丑陋，因为试图抢救我把我变回活鱼的它瞠目结舌；</p>
+<p>两栖动物在鱼眼里想必是丑陋，手脚好怪，鱼为什么不能永远圆圆的呢，长出手脚有什么用呢？掰到了怎么办呢？掰疼了怎么办呢？掰断了怎么办呢？没有手脚，还会游泳吗？</p>
+<h2 id="两载上或下"><a href="#两载上或下" class="headerlink" title="两载上或下"></a>两载上或下</h2><p>挨骂具体日期不记得了，大概是最近，懒得重新去翻，不能反反复复捡骂；</p>
+<p>青春留给我的两项作品赛，目前已经完成的很好，可能也有了点挑衅的资本；</p>
+<p>时至今日，再去骂我的老朋友们应该也不再是因为心虚了，却再没了半分雅致，这是非常反常的一件事；</p>
+<p>也不知在这漫漫短夜的一个角落，是否还有一个悲喜都像是带着哭腔的声音，仍孜孜不倦地暗咒着我的龌龊与冰冷。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -719,7 +775,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-15 15:07:55" itemprop="dateModified" datetime="2024-09-15T15:07:55+08:00">2024-09-15</time>
+                <time title="Modified: 2024-09-19 21:17:49" itemprop="dateModified" datetime="2024-09-19T21:17:49+08:00">2024-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1026,7 +1082,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-15 15:05:53" itemprop="dateModified" datetime="2024-09-15T15:05:53+08:00">2024-09-15</time>
+                <time title="Modified: 2024-09-19 21:17:26" itemprop="dateModified" datetime="2024-09-19T21:17:26+08:00">2024-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1137,7 +1193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-15 15:03:19" itemprop="dateModified" datetime="2024-09-15T15:03:19+08:00">2024-09-15</time>
+                <time title="Modified: 2024-09-19 21:15:54" itemprop="dateModified" datetime="2024-09-19T21:15:54+08:00">2024-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1409,13 +1465,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
