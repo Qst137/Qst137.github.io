@@ -28,11 +28,11 @@
 <meta property="og:description" content="长城杯复赛线下赛没有线上紧张，第一是自己的事情，第二不用抢题做，大概我还在愚昧之峰； WebGreatSQL说是 sqlmap 可以梭？倒显得我不会用 sqlmap 了； 一个登录框，登录成功即可获得 flag ； 会提示用户是否存在，随便试了几个，admin 不存在，user 存在； 盲注爆一下 user 的密码： 12345678910111213141516import requestsur">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-09-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-14T20:10:47.244Z">
+<meta property="article:modified_time" content="2024-09-15T07:07:55.339Z">
 <meta property="article:author" content="QST137">
 <meta property="article:tag" content="WriteUp">
-<meta property="article:tag" content="sql">
-<meta property="article:tag" content="web">
+<meta property="article:tag" content="CTF-Web">
+<meta property="article:tag" content="CTF-Sql">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://qst137.github.io/2024/09/14/2024-09-14-%E9%95%BF%E5%9F%8E%E6%9D%AF%E5%A4%8D%E8%B5%9B/">
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-15 04:10:47" itemprop="dateModified" datetime="2024-09-15T04:10:47+08:00">2024-09-15</time>
+                <time title="Modified: 2024-09-15 15:07:55" itemprop="dateModified" datetime="2024-09-15T15:07:55+08:00">2024-09-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +235,8 @@
 
 <p>登了没用，没有 admin；</p>
 <p>sql 执行出错会报不存在，测一下后台 <code>select</code> 的列数，username 为<code>user&#39; union select 1,2,3,4</code> 显示密码错误而非不存在，说明结果有四列；</p>
-<p>最终 payload：<code>urlencode(&#39;username=usr&#39; union select 1,2,&#39;e10adc3949ba59abbe56e057f20f883e&#39;,&#39;admin&#39;;#&amp;password=123456)</code>；</p>
+<p>最终 payload：</p>
+<p><code>urlencode(&#39;username=usr&#39; union select 1,2,&#39;e10adc3949ba59abbe56e057f20f883e&#39;,&#39;admin&#39;;#&amp;password=123456)</code>；</p>
 <h2 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h2><p>需要看一些 Java，我总感觉 OpenGauss 连网条件下应该很简单；</p>
 <p>还需要学学如何配网；</p>
 <p>然后把 sqlmap 用明白。</p>
@@ -249,8 +250,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/WriteUp/" rel="tag"># WriteUp</a>
-              <a href="/tags/sql/" rel="tag"># sql</a>
-              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/CTF-Web/" rel="tag"># CTF-Web</a>
+              <a href="/tags/CTF-Sql/" rel="tag"># CTF-Sql</a>
           </div>
 
         
@@ -263,8 +264,8 @@
       <i class="fa fa-chevron-left"></i> 壹个梦
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/09/15/2024-09-15-%E4%B8%A4%E5%B9%B4%E4%B8%8A%E4%B8%8B/" rel="next" title="两年上下">
-      两年上下 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/09/15/2024-09-15-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%82%86/" rel="next" title="区块链学习之肆">
+      区块链学习之肆 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -338,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -351,7 +352,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
